@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revian Ravil Athala - Frontend Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3a0ca3;
+            --dark: #2b2d42;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --gradient: linear-gradient(135deg, #4361ee, #3a0ca3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Google Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navigation */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-item {
+            margin-left: 32px;
+        }
+
+        .nav-link {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background: var(--gradient);
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 3px;
+            margin: 5px 0;
+            background-color: var(--dark);
+            transition: all 0.3s;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+            background: linear-gradient(to bottom, rgba(67, 97, 238, 0.05), var(--light));
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-size: 48px;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 16px;
+            animation: slideIn 1s ease-out;
+        }
+
+        .hero-content h2 {
+            font-size: 24px;
+            font-weight: 500;
+            color: var(--primary);
+            margin-bottom: 24px;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto 32px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            background: var(--gradient);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 24px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .social-icon {
+            color: var(--primary);
+            font-size: 24px;
+            padding: 12px;
+            border-radius: 50%;
+            background: rgba(67, 97, 238, 0.1);
+            transition: all 0.3s;
+            animation: pulse 2s infinite;
+        }
+
+        .social-icon:hover {
+            background: var(--gradient);
+            color: white;
+            transform: scale(1.1) rotate(10deg);
+        }
+
+        /* Section styling */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 64px;
+            height: 4px;
+            background: var(--gradient);
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* About section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .about-text {
+            text-align: center;
+        }
+
+        .about-text p {
+            font-size: 16px;
+            color: var(--gray);
+            margin-bottom: 16px;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .resume-btn {
+            margin-top: 16px;
+        }
+
+        .skills h3 {
+            font-size: 24px;
+            font-weight: 500;
+            color: var(--dark);
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .skill-tag {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: white;
+            color: var(--primary);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .skill-tag:hover {
+            background: var(--gradient);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .skill-tag i {
+            font-size: 16px;
+            animation: bounce 1.5s infinite;
+        }
+
+        /* Experience section */
+        .experience-item {
+            background: white;
+            padding: 24px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .experience-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+            animation: cardFadeIn 0.6s ease-out;
+        }
+
+        .experience-item:hover {
+            transform: scale(1.02) rotate(1deg);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .experience-date {
+            font-size: 14px;
+            color: var(--primary);
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .experience-role {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+
+        .experience-company {
+            font-size: 16px;
+            color: var(--gray);
+            margin-bottom: 12px;
+        }
+
+        .experience-desc {
+            font-size: 14px;
+            color: var(--gray);
+            margin-bottom: 16px;
+        }
+
+        .tech-stack-title {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--dark);
+            margin-bottom: 12px;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tech {
+            background: rgba(67, 97, 238, 0.1);
+            color: var(--primary);
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-size: 12px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .tech:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Projects section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .project-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+            animation: cardFadeIn 0.6s ease-out;
+        }
+
+        .project-card:hover {
+            transform: scale(1.03) rotate(-1deg);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover .project-img {
+            transform: scale(1.1);
+        }
+
+        .project-content {
+            padding: 20px;
+        }
+
+        .project-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 12px;
+        }
+
+        .project-desc {
+            font-size: 14px;
+            color: var(--gray);
+            margin-bottom: 16px;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .project-link i {
+            margin-left: 8px;
+            transition: transform 0.3s;
+        }
+
+        .project-link:hover {
+            color: var(--secondary);
+        }
+
+        .project-link:hover i {
+            transform: translateX(4px);
+        }
+
+        /* Contact section */
+        .contact-section {
+            background: linear-gradient(to bottom, #f1f3f5, var(--light));
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 32px;
+        }
+
+        .contact-info h3 {
+            font-size: 24px;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 24px;
+        }
+
+        .contact-info p {
+            font-size: 16px;
+            color: var(--gray);
+            margin-bottom: 24px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+            transition: transform 0.3s;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .contact-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+            animation: cardFadeIn 0.6s ease-out;
+        }
+
+        .contact-item:hover {
+            transform: translateX(8px);
+        }
+
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--gradient);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 16px;
+            font-size: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            animation: pulse 2s infinite;
+        }
+
+        .contact-icon:hover {
+            transform: scale(1.1) rotate(10deg);
+        }
+
+        .contact-form label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 16px;
+            border: 1px solid #DADCE0;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 8px rgba(67, 97, 238, 0.2);
+        }
+
+        .contact-form textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--gradient);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-content p {
+            font-size: 14px;
+            margin-bottom: 24px;
+            opacity: 0.8;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .footer-link {
+            color: #DADCE0;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .footer-link:hover {
+            color: white;
+        }
+
+        /* Animations */
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes cardFadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-3px); }
+        }
+
+        /* Responsive styling */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 64px;
+                flex-direction: column;
+                background: white;
+                width: 100%;
+                text-align: center;
+                transition: left 0.3s;
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+                padding: 16px 0;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-item {
+                margin: 16px 0;
+            }
+
+            .hero-content h1 {
+                font-size: 36px;
+            }
+
+            .hero-content h2 {
+                font-size: 20px;
+            }
+
+            .hero-content p {
+                font-size: 16px;
+            }
+
+            .section-title h2 {
+                font-size: 28px;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 28px;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-img {
+                height: 160px;
+            }
+        }
+
+        /* Shimeji Styles */
+        .shimeji-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100px;
+            height: 100px;
+            z-index: 9999;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            user-select: none;
+            pointer-events: auto;
+            will-change: transform;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+            -webkit-transform: translateZ(0);
+            display: none; /* Start hidden until image loads */
+        }
+
+        .shimeji-character {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            image-rendering: crisp-edges;
+            transition: all 0.3s ease;
+            will-change: transform;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+            -webkit-transform: translateZ(0);
+            filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.3));
+        }
+
+        .shimeji-container:hover {
+            transform: scale(1.1) translateZ(0);
+        }
+
+        .shimeji-container.dragging {
+            cursor: grabbing;
+            opacity: 0.8;
+        }
+
+        /* State-specific animations */
+        .shimeji-container.walking {
+            animation: walk 0.5s infinite;
+        }
+
+        .shimeji-container.running {
+            animation: run 0.3s infinite;
+        }
+
+        .shimeji-container.jumping {
+            animation: jump 0.5s ease-in-out;
+        }
+
+        .shimeji-container.crawling {
+            animation: crawl 0.5s infinite;
+        }
+
+        .shimeji-container.happy {
+            animation: happy 0.5s infinite;
+        }
+
+        .shimeji-container.surprised {
+            animation: surprised 0.5s infinite;
+        }
+
+        .shimeji-container.thinking {
+            animation: thinking 1s infinite;
+        }
+
+        .shimeji-container.sleeping {
+            animation: sleeping 2s infinite;
+        }
+
+        .shimeji-container.waving {
+            animation: wave 0.5s infinite;
+        }
+
+        .shimeji-container.dancing {
+            animation: dance 0.5s infinite;
+        }
+
+        .shimeji-container.sitting {
+            animation: sit 0.5s infinite;
+        }
+
+        @keyframes walk {
+            0%, 100% { transform: translateY(0) translateZ(0); }
+            50% { transform: translateY(-5px) translateZ(0); }
+        }
+
+        @keyframes run {
+            0%, 100% { transform: translateY(0) translateZ(0); }
+            50% { transform: translateY(-8px) translateZ(0); }
+        }
+
+        @keyframes jump {
+            0% { transform: translateY(0) translateZ(0); }
+            50% { transform: translateY(-20px) translateZ(0); }
+            100% { transform: translateY(0) translateZ(0); }
+        }
+
+        @keyframes crawl {
+            0%, 100% { transform: scaleY(0.5) translateZ(0); }
+            50% { transform: scaleY(0.4) translateZ(0); }
+        }
+
+        @keyframes happy {
+            0%, 100% { transform: scale(1) translateZ(0); }
+            50% { transform: scale(1.1) translateZ(0); }
+        }
+
+        @keyframes surprised {
+            0%, 100% { transform: scale(1) translateZ(0); }
+            50% { transform: scale(1.2) translateZ(0); }
+        }
+
+        @keyframes thinking {
+            0%, 100% { transform: rotate(0deg) translateZ(0); }
+            50% { transform: rotate(5deg) translateZ(0); }
+        }
+
+        @keyframes sleeping {
+            0%, 100% { transform: rotate(0deg) translateZ(0); }
+            50% { transform: rotate(10deg) translateZ(0); }
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: rotate(0deg) translateZ(0); }
+            50% { transform: rotate(15deg) translateZ(0); }
+        }
+
+        @keyframes dance {
+            0%, 100% { transform: rotate(0deg) translateZ(0); }
+            25% { transform: rotate(10deg) translateZ(0); }
+            75% { transform: rotate(-10deg) translateZ(0); }
+        }
+
+        @keyframes sit {
+            0%, 100% { transform: translateY(0) translateZ(0); }
+            50% { transform: translateY(5px) translateZ(0); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">Revian.</a>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="#experience" class="nav-link">Experience</a></li>
+                    <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
+                    <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Hello, I'm</h2>
+                <h1>Revian Ravil Athala</h1>
+                <p>Frontend Developer crafting responsive web applications with modern UI frameworks</p>
+                <a href="#contact" class="btn">Contact Me</a>
+                <div class="social-links">
+                    <a href="https://github.com/Revd007" target="_blank" class="social-icon">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/revian-ravil-athala-3502001b4/" target="_blank" class="social-icon">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="mailto:revianravilathala@gmail.com" class="social-icon">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Me</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Motivated and detail-oriented Frontend Developer with a strong background in React.js, Tailwind CSS, and TypeScript, combined with solid experience in system administration, network engineering, and security compliance. Passionate about creating clean, responsive, and user-friendly web interfaces, while also bringing deep technical understanding of infrastructure, cloud environments, and cybersecurity standards like PCIDSS and ISO 27001. Proven ability to collaborate in cross-functional teams, adapt quickly, and deliver high-quality results in fast-paced environments.</p>
+                    
+                    <a href="../assets/pdf/CV_Resume_FE_Revian-Ravil-Athala.pdf" download class="btn resume-btn">View Resume</a>
+                </div>
+                <div class="skills">
+                    <h3>Technical Skills</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag"><i class="fab fa-react"></i> React.js</span>
+                        <span class="skill-tag"><i class="fab fa-angular"></i> Angular</span>
+                        <span class="skill-tag"><i class="fab fa-js-square"></i> TypeScript</span>
+                        <span class="skill-tag"><i class="fab fa-js"></i> JavaScript</span>
+                        <span class="skill-tag"><i class="fab fa-css3-alt"></i> Tailwind CSS</span>
+                        <span class="skill-tag"><i class="fab fa-bootstrap"></i> Bootstrap</span>
+                        <span class="skill-tag"><i class="fas fa-code"></i> REST API</span>
+                        <span class="skill-tag"><i class="fab fa-git-alt"></i> Git</span>
+                        <span class="skill-tag"><i class="fab fa-github"></i> GitHub</span>
+                        <span class="skill-tag"><i class="fab fa-figma"></i> Figma</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <div class="section-title">
+                <h2>Work Experience</h2>
+            </div>
+            <div class="experience-item">
+                <div class="experience-date">November 2022 - Present</div>
+                <div class="experience-role">Frontend Engineer</div>
+                <div class="experience-company">PT Cebes Indonesia</div>
+                <div class="experience-desc">Building responsive web applications for travel and fintech industries, creating reusable components, and implementing modern UI/UX designs.</div>
+                <div class="tech-stack-title">Tech Stack:</div>
+                <div class="tech-stack">
+                    <span class="tech">Angular</span>
+                    <span class="tech">TypeScript</span>
+                    <span class="tech">Tailwind CSS</span>
+                    <span class="tech">REST API</span>
+                    <span class="tech">Git</span>
+                    <span class="tech">GitHub</span>
+                    <span class="tech">Figma</span>
+                </div>
+            </div>
+            <div class="experience-item">
+                <div class="experience-date">May 2021 - January 2022</div>
+                <div class="experience-role">Frontend Engineer</div>
+                <div class="experience-company">PT Wahana Lestari Makmur Perkasa</div>
+                <div class="experience-desc">Developed web applications for POS and cashier systems, focusing on usability and efficiency.</div>
+                <div class="tech-stack-title">Tech Stack:</div>
+                <div class="tech-stack">
+                    <span class="tech">React.js</span>
+                    <span class="tech">Bootstrap</span>
+                    <span class="tech">JavaScript</span>
+                    <span class="tech">REST API</span>
+                    <span class="tech">Git</span>
+                    <span class="tech">GitHub</span>
+                    <span class="tech">Figma</span>
+                </div>
+            </div>
+            <div class="experience-item">
+                <div class="experience-date">March 2019 - September 2019</div>
+                <div class="experience-role">Frontend Dev Internship</div>
+                <div class="experience-company">Diskominfo Jatim Surabaya</div>
+                <div class="experience-desc">Built reusable components using component-based architecture, participated in Agile/Scrum practices.</div>
+                <div class="tech-stack-title">Tech Stack:</div>
+                <div class="tech-stack">
+                    <span class="tech">React.js</span>
+                    <span class="tech">TypeScript</span>
+                    <span class="tech">Tailwind CSS</span>
+                    <span class="tech">JavaScript</span>
+                    <span class="tech">REST API</span>
+                    <span class="tech">Git</span>
+                    <span class="tech">GitHub</span>
+                    <span class="tech">Figma</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <div class="section-title">
+                <h2>Projects</h2>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <img src="https://i.ibb.co.com/cKfjy5jv/Screenshot-2025-04-15-134414.png" alt="Project 1" class="project-img">
+                    <div class="project-content">
+                        <h3 class="project-title">Next-Gen Security - Intelligence Platform</h3>
+                        <p class="project-desc">Transform your security operations with AthalaSIEM's advanced threat detection and response platform. Powered by AI-driven analytics and real-time monitoring, we help you stay ahead of cyber threats.</p>
+                        <a href="https://candid-fenglisu-72efa3.netlify.app/" target="_blank" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="https://i.ibb.co.com/LXghkxNW/Screenshot-2025-04-15-134635.png" alt="Project 2" class="project-img">
+                    <div class="project-content">
+                        <h3 class="project-title">AthalaSIEM Dashboard</h3>
+                        <p class="project-desc">AthalaSIEM's advanced threat detection and response platform</p>
+                        <a href="https://enchanting-lily-818b73.netlify.app/" target="_blank" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Me</h2>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Get In Touch</h3>
+                    <p>Reach out for work or project opportunities!</p>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <span>revianravilathala@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <span>github.com/Revd007</span>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-linkedin"></i>
+                        </div>
+                        <span>linkedin.com/in/revian-ravil-athala-3502001b4</span>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form>
+                        <label for="name">Name</label>
+                        <input type="text" id="name" placeholder="Your Name">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="Your Email">
+                        <label for="message">Message</label>
+                        <textarea id="message" placeholder="Your Message"></textarea>
+                        <button type="submit" class="btn" disabled>Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>© 2025 Revian Ravil Athala. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#home" class="footer-link">Home</a>
+                    <a href="#about" class="footer-link">About</a>
+                    <a href="#experience" class="footer-link">Experience</a>
+                    <a href="#projects" class="footer-link">Projects</a>
+                    <a href="#contact" class="footer-link">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <script>
+        // Mobile navigation toggle
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+
+            // Close mobile menu on link click
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                });
+            });
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = anchor.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 64,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Scroll animations for cards
+            const animateOnScroll = () => {
+                const elements = document.querySelectorAll('.experience-item, .project-card, .contact-item');
+                elements.forEach(el => {
+                    const rect = el.getBoundingClientRect();
+                    if (rect.top <= window.innerHeight * 0.85) {
+                        el.classList.add('visible');
+                    }
+                });
+            };
+
+            window.addEventListener('scroll', animateOnScroll);
+            animateOnScroll();
+        });
+    </script>
+
+    <!-- Add SMTP.js for email functionality -->
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    
+    <!-- Add Shimeji script -->
+    <script src="shimeji1.js"></script>
+    
+    <script>
+        // Initialize Shimeji with contact form functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.hutaoInstance) {
+                // Setup contact form with SMTP
+                window.hutaoInstance.setupContactForm({
+                    // SMTP Configuration for Email
+                    // -------------------------------------------------------------------------
+                    // Untuk menggunakan SMTP, Anda perlu mendaftar di layanan email seperti:
+                    // - ElasticEmail: https://elasticemail.com (Gratis hingga 100 email/hari)
+                    // - SendGrid: https://sendgrid.com
+                    // - SMTP.js: https://smtpjs.com
+                    //
+                    // Langkah-langkah:
+                    // 1. Daftar di layanan email dan dapatkan kredensial SMTP
+                    // 2. Uncomment dan isi detail SMTP Anda di bawah ini
+                    // 3. Untuk keamanan lebih baik, jangan menyimpan kredensial di repositori publik
+                    // -------------------------------------------------------------------------
+                    
+                    // smtpUser: 'your-smtp-username',          // Username SMTP (biasanya email Anda)
+                    // smtpPassword: 'your-smtp-password',      // Password SMTP atau API key
+                    // smtpService: 'smtp.elasticemail.com',    // Server SMTP
+                    // smtpPort: 2525,                          // Port SMTP
+                    
+                    // Alamat penerima email (email Anda)
+                    recipientEmail: 'revianravilathala@gmail.com',
+                    
+                    // Aktifkan notifikasi Hu Tao (dialog saat pesan berhasil terkirim)
+                    enableShimejiNotification: true
+                });
+                
+                // Make Hu Tao help with contact form when user focuses on it
+                const contactForm = document.querySelector('.contact-form');
+                if (contactForm) {
+                    contactForm.addEventListener('click', () => {
+                        if (window.hutaoInstance) {
+                            window.hutaoInstance.showEmotion('happy');
+                            window.hutaoInstance.showDialogue('contact', "Need help sending a message? Fill out the form and I'll make sure it gets delivered!");
+                        }
+                    });
+                }
+            }
+        });
+    </script>
+
+    <!-- Anti-DevTools Additional Protections -->
+    <script>
+        // Additional security against DevTools
+        (function() {
+            // Store original functions that might be used by developer tools
+            const originalFetch = window.fetch;
+            const originalXHROpen = XMLHttpRequest.prototype.open;
+            const originalCreateElement = document.createElement;
+            
+            // Block DevTools-related requests
+            window.fetch = function(url, options) {
+                // Check if this is a DevTools-related request
+                if (typeof url === 'string' && 
+                    (url.includes('devtools') || url.includes('debugger') || url.includes('inspector'))) {
+                    console.warn('Suspicious request blocked');
+                    return Promise.reject(new Error('Request blocked'));
+                }
+                return originalFetch.apply(this, arguments);
+            };
+            
+            // Block XHR requests to sensitive assets
+            XMLHttpRequest.prototype.open = function(method, url) {
+                if (typeof url === 'string' && 
+                    (url.includes('.js') || url.includes('.png') || url.includes('assets'))) {
+                    const stack = new Error().stack || '';
+                    if (stack.includes('devtools') || stack.includes('debugger')) {
+                        console.warn('Asset inspection blocked');
+                        throw new Error('Access denied');
+                    }
+                }
+                return originalXHROpen.apply(this, arguments);
+            };
+            
+            // Prevent creation of script debugging panels
+            document.createElement = function(tagName) {
+                const element = originalCreateElement.call(document, tagName);
+                if (tagName.toLowerCase() === 'script') {
+                    const stack = new Error().stack || '';
+                    if (stack.includes('devtools') || stack.includes('debugger')) {
+                        // Block script creation from DevTools
+                        return originalCreateElement.call(document, 'span');
+                    }
+                }
+                return element;
+            };
+            
+            // Add CSS to hide devtools elements
+            const style = document.createElement('style');
+            style.textContent = `
+                /* Hide DevTools-related elements */
+                .__devtools__, .__debug__, .drawer-contents, 
+                .console-view, .panel, .elements-tree {
+                    display: none !important;
+                    visibility: hidden !important;
+                    opacity: 0 !important;
+                    height: 0 !important;
+                    width: 0 !important;
+                    position: absolute !important;
+                    top: -9999px !important;
+                    left: -9999px !important;
+                    pointer-events: none !important;
+                }
+                
+                /* Prevent selection of images */
+                img {
+                    -webkit-user-drag: none;
+                    -webkit-touch-callout: none;
+                    user-select: none;
+                    pointer-events: none;
+                }
+                
+                /* Hide asset URLs */
+                [src], [href] {
+                    color: transparent !important;
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Override right click to prevent inspection
+            document.addEventListener('contextmenu', function(event) {
+                event.preventDefault();
+                return false;
+            }, true);
+            
+            // Block paste to prevent console pasting
+            document.addEventListener('paste', function(event) {
+                const stack = new Error().stack || '';
+                if (stack.includes('devtools') || stack.includes('debugger')) {
+                    event.preventDefault();
+                    return false;
+                }
+            }, true);
+            
+            // Flood console if it's opened
+            let consoleOpenCounter = 0;
+            Object.defineProperty(console, '_commandLineAPI', {
+                get: function() {
+                    consoleOpenCounter++;
+                    if (consoleOpenCounter > 3) {
+                        // Console was accessed multiple times, likely from DevTools
+                        setInterval(() => {
+                            for (let i = 0; i < 50; i++) {
+                                console.log('%c ', 'padding: 1px; background: white; color: white; font-size: 1px;');
+                            }
+                        }, 100);
+                    }
+                }
+            });
+            
+            // Detect if DevTools is opened by checking the height/width
+            function checkDevTools() {
+                const heightThreshold = 100;
+                const widthThreshold = 100;
+                
+                if ((window.outerHeight - window.innerHeight > heightThreshold) ||
+                    (window.outerWidth - window.innerWidth > widthThreshold)) {
+                    
+                    // DevTools is likely open
+                    if (window.hutaoInstance) {
+                        window.hutaoInstance.showEmotion('surprised');
+                        window.hutaoInstance.showDialogue('surprised', "DevTools terdeteksi! Mohon hormati karya ini!");
+                        
+                        // Call anti-DevTools methods
+                        if (typeof Shimeji !== 'undefined') {
+                            Shimeji.injectAntiDevTools();
+                        }
+                    }
+                }
+            }
+            
+            // Check periodically and on resize
+            window.addEventListener('resize', checkDevTools);
+            setInterval(checkDevTools, 1000);
+            
+            // Create and immediately activate an iframe-based blocker
+            try {
+                // Create a hidden iframe
+                const iframe = document.createElement('iframe');
+                iframe.style.display = 'none';
+                document.body.appendChild(iframe);
+                
+                // Add DevTools detection to the iframe
+                const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                const script = iframeDoc.createElement('script');
+                script.textContent = `
+                    // Detection logic for this iframe context
+                    function detectDevTools() {
+                        if (window.outerHeight - window.innerHeight > 100 ||
+                            window.outerWidth - window.innerWidth > 100) {
+                            
+                            // Signal back to the parent window
+                            window.parent.postMessage('devtools-detected', '*');
+                        }
+                    }
+                    
+                    setInterval(detectDevTools, 1000);
+                    window.addEventListener('resize', detectDevTools);
+                `;
+                iframeDoc.head.appendChild(script);
+                
+                // Listen for messages from the iframe
+                window.addEventListener('message', function(event) {
+                    if (event.data === 'devtools-detected') {
+                        if (window.hutaoInstance) {
+                            window.hutaoInstance.handleDevToolsOpened('iframe detection');
+                        }
+                    }
+                });
+            } catch (e) {
+                // Ignore iframe security errors
+            }
+        })();
+    </script>
+</body>
+</html>

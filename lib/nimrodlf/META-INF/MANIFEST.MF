@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.7.0
+Created-By: 24.91-b01 (Oracle Corporation)
+Main-Class: com.nilo.plaf.nimrod.NimRODMain
+Version: 1.2d
+
+Name: Build-Info
+Created-Time: 2015/12/05 11:02:20 CET
+Java-Version: 1.7.0_91
+
+Name: URL-Info
+SVN-URL: svn://momentum:2501/trunk/java/NiloLookAFeel
+SVN-Revision: 376
+SVN-Fecha: Fri Dec 04 14:38:56 CET 2015
+

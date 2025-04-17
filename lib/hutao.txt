@@ -1,0 +1,44 @@
+Direct Dialogue Mode: The character now responds through speech bubbles instead of using the chat interface. Click on the character to ask a question directly.
+Multi-language Support: The character can understand and respond in four languages:
+English (en)
+Indonesian (id)
+Javanese (jv)
+Japanese (ja)
+The system automatically detects the language of your question and responds in the same language. You can also manually switch languages with Shift+L.
+Portfolio Knowledge: The character can answer questions about:
+The portfolio owner
+Background and experience
+Skills and expertise
+Projects and their details
+Continuous Learning: I implemented:
+Language detection based on keywords
+Intent recognition to understand what you're asking about
+Entity extraction to identify what specific information you want
+A system that "learns" from new interactions (simulated)
+To use it:
+Click on the character to ask a question
+Type your question in any of the supported languages
+The character will respond directly through a speech bubble
+Press Shift+L to cycle through languages manually
+
+
+Penambahan fungsi di Shimeji.js:
+setupContactForm() - Menginisialisasi formulir kontak dan mengaktifkan tombol kirim
+handleContactFormSubmit() - Memproses pengiriman formulir, validasi input, dan persiapan data email
+sendContactEmail() - Mengirim email menggunakan SMTP.js (dengan simulasi jika kredensial belum disediakan)
+sendShimejiNotification() - Membuat Hu Tao memberi tahu tentang email yang dikirim
+showContactFormError() - Menampilkan pesan kesalahan jika ada masalah
+isValidEmail() - Validasi format email
+Integrasi SMTP.js:
+Menambahkan library SMTP.js di HTML untuk pengiriman email langsung dari browser
+Menyediakan template konfigurasi yang jelas untuk layanan SMTP
+Membuat fungsi simulasi untuk demonstrasi jika kredensial SMTP belum dikonfigurasi
+Integrasi Hu Tao (Shimeji):
+Hu Tao akan memberikan bantuan saat pengguna fokus ke formulir kontak
+Menampilkan emosi dan dialog sesuai status pengiriman (sukses/gagal)
+Memberikan petunjuk konfigurasi SMTP jika belum diatur
+Memberikan konfirmasi saat pesan berhasil dikirim
+Langkah Implementasi untuk Pengguna:
+Instruksi jelas di kode HTML tentang cara mendaftar dan mengonfigurasi layanan SMTP
+Rekomendasi beberapa layanan SMTP (ElasticEmail, SendGrid)
+Format konfigurasi yang mudah diikuti
